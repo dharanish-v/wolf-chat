@@ -13,3 +13,15 @@ class UserRegisterForm(forms.ModelForm):
             'username' : forms.TextInput(attrs={"class":"form-control"}),
             'password' : forms.PasswordInput(attrs={"class":"form-control"}),
         }
+
+
+class UserLoginForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = "__all__"
+
+        widgets = {
+            'username' : forms.TextInput(attrs={"class":"form-control"}),
+            'password' : forms.PasswordInput(attrs={"class":"form-control"}),
+        }
