@@ -10,4 +10,7 @@ class User(models.Model):
     last_login = DateTimeField(default=timezone.now)
 
     def get_success_url(self):
-        reverse('register')
+        reverse('login')
+
+    def __str__(self):
+        return self.username

@@ -1,10 +1,10 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import redirect, render, HttpResponseRedirect
 from django.urls.base import reverse
 from .forms import UserRegisterForm, UserLoginForm
 from .models import User
 from django.views.generic import CreateView
 from .validations import LoginValidation, RegisterValidation
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 
 
 # Create your views here.
@@ -18,7 +18,7 @@ class UserRegisterView(CreateView):
         print(form.data)
         register_data = RegisterValidation(form.data)
         print(register_data.validate())
-        return HttpResponseRedirect(reverse('register'))
+        return HttpResponseRedirect(reverse('login'))
 
 class UserLoginView(CreateView):
     model = User
@@ -33,3 +33,7 @@ class UserLoginView(CreateView):
             print(login(self.request, user))
             print('user logged in!')
         return HttpResponseRedirect(reverse('login'))
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
