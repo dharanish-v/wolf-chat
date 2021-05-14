@@ -59,6 +59,7 @@ class LoginValidation():
             if check_password(self.password, User.objects.filter(username=self.username)[0].password):
                 user = User.objects.filter(username=self.username)[0]
                 print(user)
+                print("user created!")
                 return user
             else:
                 print('password incorrect')
